@@ -276,6 +276,23 @@
     .gnb .brand{line-height:1.25}
     .gnb .brand-port{display:block}
   }
+
+  /* ===== MOBILE FINE-TUNE (iPhone 등) ===== */
+  @media(max-width:640px){
+    /* GNB: 좌측 브랜드/버블을 숨겨 섹션 텍스트와 겹침 방지 */
+    .gnb{padding:11px 16px}
+    .gnb .brand{display:none}
+    .gnb .doc-bubble{display:none}
+    .gnb button{padding:8px 14px;font-size:12.5px}
+    /* 키워드 클라우드를 GNB 버튼 아래로 내려 겹침 방지 */
+    .kwcloud{top:9vh}
+    /* WORKS: 3열 → 2열, 썸네일 확대 */
+    .grid-works{grid-template-columns:repeat(2,1fr);gap:12px}
+    .work .info{padding:13px 13px 16px}
+    .work .cat{font-size:9px;padding:3px 8px}
+    .work .info h3{font-size:15px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .work .info p{font-size:12.5px;-webkit-line-clamp:2;margin-top:6px}
+  }
 </style>
 </head>
 <body>
