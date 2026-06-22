@@ -62,7 +62,7 @@
   @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,9px)}}
   .hero-flow{position:relative;display:flex;flex-direction:column;align-items:stretch;width:100%;max-width:330px;margin-left:auto}
   .hero-flow::before{content:"";position:absolute;z-index:0;inset:-64px -44px -74px -28px;pointer-events:none;background:radial-gradient(42% 30% at 45% 14%,rgba(245,150,215,.92) 0%,rgba(245,150,215,0) 62%),radial-gradient(46% 34% at 80% 80%,rgba(108,98,238,.92) 0%,rgba(108,98,238,0) 62%),radial-gradient(40% 30% at 72% 46%,rgba(150,170,250,.6) 0%,rgba(150,170,250,0) 60%);filter:blur(42px)}
-  .flow-track{position:relative;z-index:1;display:flex;flex-direction:column;align-items:stretch;width:100%}
+  .flow-track{position:relative;z-index:1;display:flex;flex-direction:column;align-items:stretch;width:100%;min-width:0}
   .flow-dots{display:none}
   .flow-step{position:relative;z-index:1;display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid rgba(255,255,255,.55);border-radius:18px;background:rgba(255,255,255,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(110,120,170,.16),inset 0 1px 0 rgba(255,255,255,.6);transition:border-color .25s ease,transform .25s ease,background .25s ease}
   .flow-step .fs-ico{flex:0 0 auto;width:46px;height:46px;display:flex;align-items:center;justify-content:center}
@@ -271,7 +271,7 @@
 
   @media(max-width:860px){
     .grid2,.wfsec .grid2{grid-template-columns:1fr;gap:26px}
-    .hero .inner{grid-template-columns:1fr;gap:34px}
+    .hero .inner{grid-template-columns:minmax(0,1fr);gap:34px}
     .hero h1{white-space:normal}
     .nav{display:none}.watermark{font-size:22vh}.viewport{height:66vh}
     .kwcloud{position:absolute;margin:0;top:5vh;right:2vw;left:auto;bottom:auto;width:250px;height:230px;transform:scale(.82);transform-origin:top right}
@@ -288,8 +288,11 @@
     .gnb button{padding:8px 14px;font-size:12.5px}
 
     /* HERO: STEP 카드 세로 스택 → 가로 슬라이드 캐러셀 (세로 짤림 방지) */
+    html,body{overflow-x:clip;max-width:100%}
     .hero{position:relative;height:auto;min-height:100svh;align-items:center;overflow:visible;padding:96px 0 44px}
-    .hero .inner{gap:22px}
+    .hero .inner{grid-template-columns:minmax(0,1fr);gap:22px}
+    .hero-left{max-width:100%}
+    .hero p.lead{max-width:100%}
     .hero h1{margin-top:14px}
     .hero p.lead{margin-top:16px}
     .hero .meta{margin-top:20px}
