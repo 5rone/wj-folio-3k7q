@@ -279,19 +279,41 @@
 
   /* ===== MOBILE FINE-TUNE (iPhone 등) ===== */
   @media(max-width:640px){
-    /* GNB: 좌측 브랜드/버블을 숨겨 섹션 텍스트와 겹침 방지 */
-    .gnb{padding:11px 16px}
+    /* GNB: 전원정 버튼 우측 고정, 브랜드/버블 숨김 */
+    .gnb{padding:11px 16px;justify-content:flex-end}
     .gnb .brand{display:none}
     .gnb .doc-bubble{display:none}
     .gnb button{padding:8px 14px;font-size:12.5px}
-    /* 키워드 클라우드를 GNB 버튼 아래로 내려 겹침 방지 */
-    .kwcloud{top:9vh}
-    /* WORKS: 3열 → 2열, 썸네일 확대 */
+
+    /* 스크롤 핀 섹션 → 모바일은 일반 흐름으로 펼쳐 스텝별로 한 화면에 */
+    .pin{height:auto !important}
+    .pin .pinner{position:relative;height:auto;display:block;padding:60px 0}
+    .pin .reveal{opacity:1 !important;transform:none !important}
+    .pin .grid2{gap:20px}
+    .combo .sweep{position:relative;inset:auto;transform:none !important;background:transparent;display:block;padding-top:64px}
+    .watermark,.kwcloud{display:none}
+    /* 기능정의서 표: 내부 스크롤 박스 */
+    .ftwrap{height:auto}
+    .ftscroll{overflow-y:auto;max-height:50vh;-webkit-mask-image:none;mask-image:none}
+    .ftrows{transform:none !important}
+    /* 와이어프레임 폰 목업 축소 + 디자인 화면 고정 노출 */
+    .wfsec .viewport{height:auto;gap:12px}
+    .phone{height:auto;width:74%;max-width:290px;aspect-ratio:393/740}
+    .vp-img{transform:none !important}
+    .wfsec .vp-layer.delayer{opacity:1 !important}
+    .wfsec .vp-layer.dflayer{opacity:0 !important}
+
+    /* WORKS: 3열 → 2열, 카드 텍스트 말줄임 */
     .grid-works{grid-template-columns:repeat(2,1fr);gap:12px}
     .work .info{padding:13px 13px 16px}
     .work .cat{font-size:9px;padding:3px 8px}
     .work .info h3{font-size:15px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .work .info p{font-size:12.5px;-webkit-line-clamp:2;margin-top:6px}
+
+    /* 카드 모달: 이미지 위 / 설명 아래 스택, 이미지 세로 확보 */
+    .modal .box{overflow-y:auto}
+    .modal .mthumb{aspect-ratio:4/3}
+    .modal .mbody{position:static;background:var(--canvas);-webkit-backdrop-filter:none;backdrop-filter:none;padding:20px 24px 26px}
   }
 </style>
 </head>
