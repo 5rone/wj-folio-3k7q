@@ -62,6 +62,8 @@
   @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,9px)}}
   .hero-flow{position:relative;display:flex;flex-direction:column;align-items:stretch;width:100%;max-width:330px;margin-left:auto}
   .hero-flow::before{content:"";position:absolute;z-index:0;inset:-64px -44px -74px -28px;pointer-events:none;background:radial-gradient(42% 30% at 45% 14%,rgba(245,150,215,.92) 0%,rgba(245,150,215,0) 62%),radial-gradient(46% 34% at 80% 80%,rgba(108,98,238,.92) 0%,rgba(108,98,238,0) 62%),radial-gradient(40% 30% at 72% 46%,rgba(150,170,250,.6) 0%,rgba(150,170,250,0) 60%);filter:blur(42px)}
+  .flow-track{position:relative;z-index:1;display:flex;flex-direction:column;align-items:stretch;width:100%}
+  .flow-dots{display:none}
   .flow-step{position:relative;z-index:1;display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid rgba(255,255,255,.55);border-radius:18px;background:rgba(255,255,255,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(110,120,170,.16),inset 0 1px 0 rgba(255,255,255,.6);transition:border-color .25s ease,transform .25s ease,background .25s ease}
   .flow-step .fs-ico{flex:0 0 auto;width:46px;height:46px;display:flex;align-items:center;justify-content:center}
   .flow-step .fs-ico svg{width:46px;height:46px;display:block;filter:drop-shadow(0 3px 9px rgba(150,70,235,.4))}
@@ -285,6 +287,23 @@
     .gnb .doc-bubble{display:none}
     .gnb button{padding:8px 14px;font-size:12.5px}
 
+    /* HERO: STEP 카드 세로 스택 → 가로 슬라이드 캐러셀 (세로 짤림 방지) */
+    .hero{position:relative;height:auto;min-height:100svh;align-items:center;overflow:visible;padding:96px 0 44px}
+    .hero .inner{gap:22px}
+    .hero h1{margin-top:14px}
+    .hero p.lead{margin-top:16px}
+    .hero .meta{margin-top:20px}
+    .hero-cta{margin-top:20px}
+    .scrollhint{display:none}
+    .hero-flow{max-width:none;margin:0;overflow:visible}
+    .flow-track{flex-direction:row;margin:0 -20px;padding:10px 20px 6px;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .flow-track::-webkit-scrollbar{display:none}
+    .flow-track .flow-step{flex:0 0 80%;scroll-snap-align:center}
+    .flow-track .flow-arrow{display:none}
+    .flow-dots{display:flex;justify-content:center;gap:7px;margin-top:14px}
+    .flow-dots i{width:7px;height:7px;border-radius:50%;background:rgba(120,110,170,.28);transition:background .25s,transform .25s}
+    .flow-dots i.on{background:var(--point,#7a5fd0);transform:scale(1.25)}
+
     /* 스크롤 핀 섹션 → 모바일은 일반 흐름으로 펼쳐 스텝별로 한 화면에 */
     .pin{height:auto !important}
     .pin .pinner{position:relative;height:auto;display:block;padding:60px 0}
@@ -452,6 +471,7 @@
       <a class="hero-cta reveal" id="go-works"><span>대표 프로젝트 바로 보기</span></a>
     </div>
     <div class="hero-flow reveal">
+      <div class="flow-track">
       <div class="flow-step"><span class="fs-ico"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="picog1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7b3cd"/><stop offset="0.5" stop-color="#bfa6ef"/><stop offset="1" stop-color="#8fb8f0"/></linearGradient></defs><g stroke="#dcdce2" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"><path d="M8 15h24v24H8z"/><path d="M16 7h24v24H16z"/><path d="M8 15l8-8M32 15l8-8M32 39l8-8M8 39l8-8"/></g><circle cx="20" cy="27" r="11" fill="url(#picog1)"/></svg></span><div class="fs-text"><span class="fs-num">STEP 01</span><span class="fs-name">인터뷰 · 기획</span><span class="fs-desc">클라이언트·사용자와의 소통으로<br>주요 플로우와 기능 요구 사항을 정확히 파악한다</span></div></div>
       <div class="flow-arrow">↓</div>
       <div class="flow-step"><span class="fs-ico"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="picog2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7b3cd"/><stop offset="0.5" stop-color="#bfa6ef"/><stop offset="1" stop-color="#8fb8f0"/></linearGradient></defs><rect x="28" y="6" width="13" height="13" fill="url(#picog2)"/><circle cx="16" cy="37" r="7" fill="url(#picog2)"/><rect x="11" y="11" width="24" height="24" stroke="#dcdce2" stroke-width="1"/></svg></span><div class="fs-text"><span class="fs-num">STEP 02</span><span class="fs-name">기능정의서</span><span class="fs-desc">파악한 니즈를 기능 단위로 정리, 화면·기능<br>명세로 구조화해 개발 기준을 세운다</span></div></div>
@@ -459,7 +479,9 @@
       <div class="flow-step"><span class="fs-ico"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="picog3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7b3cd"/><stop offset="0.5" stop-color="#bfa6ef"/><stop offset="1" stop-color="#8fb8f0"/></linearGradient></defs><circle cx="24" cy="20" r="14" stroke="#dcdce2" stroke-width="1"/><circle cx="24" cy="31" r="9" fill="url(#picog3)"/></svg></span><div class="fs-text"><span class="fs-num">STEP 03</span><span class="fs-name">와이어프레임</span><span class="fs-desc">정리된 기능 기준으로 화면 플로우와 레이아웃을 설계한다</span></div></div>
       <div class="flow-arrow">↓</div>
       <div class="flow-step"><span class="fs-ico"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="picog4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7b3cd"/><stop offset="0.5" stop-color="#bfa6ef"/><stop offset="1" stop-color="#8fb8f0"/></linearGradient></defs><g stroke="#dcdce2" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"><path d="M24 5L7 17h34L24 5z"/><path d="M7 17l17 26M41 17L24 43M24 17v26"/></g><circle cx="24" cy="20" r="11" fill="url(#picog4)"/></svg></span><div class="fs-text"><span class="fs-num">STEP 04</span><span class="fs-name">디자인</span><span class="fs-desc">컨셉디자인 확인·컨펌 후 전체 화면 구조에<br>디자인을 입혀 UI로 완성한다</span></div></div>
+      </div>
     </div>
+    <div class="flow-dots reveal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </div>
   <div class="scrollhint">SCROLL ↓</div>
 </section>
@@ -821,6 +843,25 @@
     var el=document.getElementById('s-works');
     window.scrollTo({top:window.scrollY+el.getBoundingClientRect().top,behavior:'smooth'});
   });}
+
+  /* HERO 모바일 캐러셀: 활성 도트 동기화 */
+  (function(){
+    var track=document.querySelector('.flow-track');
+    var dotsWrap=document.querySelector('.flow-dots');
+    if(!track||!dotsWrap)return;
+    var steps=[].slice.call(track.querySelectorAll('.flow-step'));
+    var dots=[].slice.call(dotsWrap.querySelectorAll('i'));
+    function syncDot(){
+      var cr=track.getBoundingClientRect(), c=cr.left+cr.width/2, best=0, min=1e9;
+      steps.forEach(function(s,i){
+        var r=s.getBoundingClientRect(), sc=r.left+r.width/2, d=Math.abs(sc-c);
+        if(d<min){min=d;best=i;}
+      });
+      dots.forEach(function(dt,i){dt.classList.toggle('on',i===best);});
+    }
+    track.addEventListener('scroll',syncDot,{passive:true});
+    syncDot();
+  })();
 
   /* GNB + side panel */
   var gnb=document.getElementById('gnb');
